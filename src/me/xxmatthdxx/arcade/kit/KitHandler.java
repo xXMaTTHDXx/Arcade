@@ -16,7 +16,6 @@ public class KitHandler {
 
     private HashMap<ArcadePlayer, Kit> playerKits = new HashMap<>();
 
-
     public KitHandler(){
     }
 

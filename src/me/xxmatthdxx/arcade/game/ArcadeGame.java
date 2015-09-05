@@ -2,6 +2,7 @@ package me.xxmatthdxx.arcade.game;
 
 import me.xxmatthdxx.arcade.kit.Kit;
 import me.xxmatthdxx.arcade.player.ArcadePlayer;
+import me.xxmatthdxx.arcade.team.Team;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +24,7 @@ public class ArcadeGame {
     private GameInfo info;
     private List<Kit> kits;
     private GameState state;
+    private List<Team> teams = new ArrayList<>();
 
     public ArcadeGame(String name, GameMap[] maps, Kit[] kits){
         this.name = name;
@@ -116,5 +118,13 @@ public class ArcadeGame {
 
     public void setDead(List<ArcadePlayer> dead) {
         this.dead = dead;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 }

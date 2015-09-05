@@ -4,6 +4,7 @@ import me.xxmatthdxx.arcade.Arcade;
 import me.xxmatthdxx.arcade.kit.Kit;
 import me.xxmatthdxx.arcade.kit.KitHandler;
 import me.xxmatthdxx.arcade.player.ArcadePlayer;
+import me.xxmatthdxx.arcade.team.Team;
 import me.xxmatthdxx.arcade.timer.GameTimer;
 import me.xxmatthdxx.arcade.util.LocationUtil;
 import org.bukkit.entity.Player;
@@ -61,7 +62,11 @@ public class ArcadeHandler {
         }
 
         if(currentGame.getInfo().isTeamGame()){
-            //TODO sort teams
+            for(Team t : currentGame.getTeams()){
+                for(ArcadePlayer pl : t.getPlayers()){
+                    pl.getPlayer().teleport(currentGame.getCurrentMap().getSpawns().get(currentGame.getTeams().indexOf(t)));
+                }
+            }
         }
         else {
             LocationUtil.distribute(currentGame.getAllPlayers(), currentGame.getCurrentMap().getSpawns());
