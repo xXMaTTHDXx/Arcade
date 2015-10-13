@@ -1,0 +1,4 @@
+name: Arcade
+main: me.xxmatthdxx.arcade.Arcade
+version: 1.0
+description: Backend for minigames.
