@@ -30,11 +30,7 @@ public abstract class Kit {
         this.displayItem = displayItem;
     }
 
-    public void giveKit(ArcadePlayer pl){
-        Player player = pl.getPlayer();
-        player.getInventory().setArmorContents(armor);
-        player.getInventory().setContents(items);
-    }
+    public abstract void giveKit(ArcadePlayer player);
 
     public abstract ItemStack[] getArmor();
 

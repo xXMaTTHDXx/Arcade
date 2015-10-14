@@ -6,6 +6,7 @@ import me.xxmatthdxx.arcade.events.ArcadePlayerLeaveEvent;
 import me.xxmatthdxx.arcade.game.ArcadeHandler;
 import me.xxmatthdxx.arcade.game.GameInfo;
 import me.xxmatthdxx.arcade.player.ArcadePlayer;
+import me.xxmatthdxx.arcade.player.PlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,7 +27,8 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e){
         Player pl = e.getPlayer();
         Bukkit.getPluginManager().callEvent(new ArcadePlayerJoinEvent(pl));
-        ArcadeHandler.getInstance().getCurrentGame().getAllPlayers().add(new ArcadePlayer(pl));
+        PlayerManager.getInstance().createPlayer(pl);
+        ArcadeHandler.getInstance().getCurrentGame().getAllPlayers().add(PlayerManager.getInstance().getPlayer(pl.getName()));
     }
 
     @EventHandler

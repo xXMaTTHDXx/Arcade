@@ -3,11 +3,13 @@ package me.xxmatthdxx.arcade.game;
 import io.netty.util.internal.StringUtil;
 import me.xxmatthdxx.arcade.exceptions.MapLoadException;
 import me.xxmatthdxx.arcade.util.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +28,7 @@ public class GameMap {
         this.name = name;
         this.desc = desc;
         this.configLocation = configLocation;
+        spawns = new ArrayList<>();
     }
 
     public String getName() {
@@ -58,7 +61,7 @@ public class GameMap {
             if (file.exists()) {
                 FileConfiguration config = YamlConfiguration.loadConfiguration(file);
                 config.getConfigurationSection("maps").getKeys(false).stream().filter(name::equalsIgnoreCase).forEach(s -> {
-                    Location lobby = StringUtils.deserialize(config.getString("s.lobby"));
+                    Location lobby = StringUtils.deserialize(config.getString("maps." + s + ".lobby"));
                     this.lobby = lobby;
                 });
             } else {
@@ -77,9 +80,10 @@ public class GameMap {
             if (file.exists()) {
                 FileConfiguration config = YamlConfiguration.loadConfiguration(file);
                 config.getConfigurationSection("maps").getKeys(false).stream().filter(name::equalsIgnoreCase).forEach(s -> {
-                    for(String spawn : config.getStringList(s + ".spawns")){
+                    for(String spawn : config.getStringList("maps." + s + ".spawns")){
+                        System.out.println(spawn);
                         Location loc = StringUtils.deserialize(spawn);
-                        this.spawns.add(loc);
+                        this.spawns.add(new Location(loc.getWorld(), loc.getBlockX(), loc.getWorld().getHighestBlockYAt(loc.getBlockX(), loc.getBlockZ()), loc.getBlockZ()));
                     }
                 });
             } else {

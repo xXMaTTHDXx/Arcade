@@ -19,6 +19,13 @@ public class Arcade extends JavaPlugin {
     private ArcadeHandler arcadeHandler;
     private GameState state;
 
+    /**
+     * TODO list
+     * Make lobby teleport you to highest block.
+     * Make commands.
+     * Figure out the ending of games - IMPORTANT
+     */
+
     public void onEnable(){
         instance = this;
         kitHandler = new KitHandler();

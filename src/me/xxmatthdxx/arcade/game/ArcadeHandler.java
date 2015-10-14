@@ -22,6 +22,7 @@ public class ArcadeHandler {
     private List<ArcadeGame> enabledGames = new ArrayList<>();
     private ArcadeGame lastGame;
     private ArcadeGame currentGame;
+    private GameTimer timer;
 
     private static ArcadeHandler instance;
 
@@ -93,6 +94,14 @@ public class ArcadeHandler {
 
     public void stopGame(){
         //TODO display winners.
+    }
+
+    public GameTimer getTimer(){
+        return timer;
+    }
+
+    public void setTimer(GameTimer timer){
+        this.timer = timer;
     }
 
     public List<ArcadeGame> getEnabledGames() {
